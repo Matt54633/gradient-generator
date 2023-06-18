@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gradient Generator</title>
+    <link type="text/css" rel="stylesheet" href="style.css">
+    <link rel="apple-touch-icon" sizes="180x180" href="../images/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../images/favicon-16x16.png">
+    <link rel="manifest" href="../site.webmanifest">
+    <link rel="mask-icon" href="../images/safari-pinned-tab.svg" color="#3c9de2">
+    <meta name="msapplication-TileColor" content="#262626">
+</head>
+<body class="flex touchRandom">
+    <main id="main">
+        <div class="glass card flex">
+            <div class="solid card flex">
+                <h1 class="title">Gradient Generator</h1>                    
+                <div class="inputContainer flex">
+                    <div class="input">
+                        <label for="color1">Color 1</label>
+                        <input type="color" name="color1" id="color1" value="#00c9ff">
+                    </div>
+                    <div class="input">
+                        <label for="color2">Color 2</label>
+                        <input type="color" name="color2" id="color2" value="#92fe9d">
+                    </div>
+                  
+                    <div class="input">
+                        <label for="stop1">Start %</label>
+                        <input type="number" name="stop1" id="stop1" value="0" min="0" max="100">
+                    </div>
+                    <div class="input">
+                        <label for="stop2">Stop %</label>
+                        <input type="number" name="stop2" id="stop2" value="100" min="0" max="100">
+                    </div>  
+                    <div class="input">
+                        <label for="angle">Angle</label>
+                        <input type="number" name="angle" id="angle" value="90" min="0" max="360">
+                    </div> 
+                    <div class="input">
+                        <label style="color: transparent;" for="angle">Code</label>
+                        <button id="css" class="button">Copy CSS</button>
+                </div>
+
+            </div>
+        </div>
+    </main>
+    <footer>
+        <p id="footerText" class="footerText"></p>
+    </footer>
+<script src="app.js"></script>
+</body>
+</html>
