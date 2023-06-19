@@ -26,33 +26,28 @@ window.addEventListener("keydown", function (e) {
   }
 });
 
-// on touch that isnt on the main container, randomize the background
+
+// while touch is held, randomize the background
 window.addEventListener("touchstart", function (e) {
-  // randomize if touch is not on .noTouch
-  if (e.touches.length > 1) {
-    document.getElementById("main").style.display = "none";
-    setTimeout(function () {
-      document.getElementById("main").style.display = "block";
-    }, 2500);
-  } else {
-    if (e.target.classList.contains("touchRandom")) {
-      randomize();
-      document.getElementById("footerText").style.display = "none";
-    }
-  }
+    touchstart = e.timeStamp;
 });
 
-// if device is shaken, hide the main element, then show it again on release
-window.addEventListener("devicemotion", function (e) {
-    if (e.acceleration.x > 10 || e.acceleration.y > 10 || e.acceleration.z > 10) {
+// on touch end, if touch is held for more than 1 second, hide the main element, then show it again on release
+window.addEventListener("touchend", function (e) {
+    touchend = e.timeStamp;
+    touchtime = touchend - touchstart;
+    if (touchtime > 350) {
         document.getElementById("main").style.display = "none";
+        setTimeout(function () {
+            document.getElementById("main").style.display = "flex";
+        }, 2500);
+    } else {
+        if (e.target.classList.contains("touchRandom")) {
+            randomize();
+            document.getElementById("footerText").style.display = "none";
+          }
     }
-    setTimeout(function () {
-        document.getElementById("main").style.display = "block";
-    }, 2500);
 });
-
-
 
 // on shift, hide the main element, then show it again on release
 window.addEventListener("keydown", function (e) {
@@ -63,7 +58,7 @@ window.addEventListener("keydown", function (e) {
 
 window.addEventListener("keyup", function (e) {
     if (e.keyCode === 16 && !isTouchDevice()) {
-        document.getElementById("main").style.display = "block";
+        document.getElementById("main").style.display = "flex";
     }
 });
 
@@ -163,7 +158,7 @@ function changeFooterTextColour() {
 function helpButtonText() {
     if (isTouchDevice()) {
         document.getElementById("helpText1").innerHTML = "Touch background to<br>randomise gradient";
-        document.getElementById("helpText2").innerText = "Use 2 fingers to hide menu";
+        document.getElementById("helpText2").innerText = "Long press to hide menu";
 
     } else {
         document.getElementById("helpText1").innerText = "Press spacebar to randomise gradient";
@@ -173,7 +168,7 @@ function helpButtonText() {
 
 // on page load, check if help menu has been hidden before, if not, show it
 window.addEventListener("load", function () {
-    if (sessionStorage.getItem("helpMenuHidden") == "true") {
+    if (localStorage.getItem("helpMenuHidden") == "true") {
         document.getElementById("help").style.display = "none";
         document.getElementById("inputs").style.display = "grid";
     } else {
@@ -186,6 +181,6 @@ window.addEventListener("load", function () {
 // on click of helpButton, hide the help div
 document.getElementById("helpButton").addEventListener("click", function () {
   document.getElementById("help").style.display = "none";
-    document.getElementById("inputs").style.display = "grid";
-  sessionStorage.setItem("helpMenuHidden", "true");
+  document.getElementById("inputs").style.display = "grid";
+  localStorage.setItem("helpMenuHidden", "true");
 });
