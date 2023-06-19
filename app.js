@@ -29,9 +29,16 @@ window.addEventListener("keydown", function (e) {
 // on touch that isnt on the main container, randomize the background
 window.addEventListener("touchstart", function (e) {
   // randomize if touch is not on .noTouch
-  if (e.target.classList.contains("touchRandom")) {
-    randomize();
-    document.getElementById("footerText").style.display = "none";
+  if (e.touches.length > 1) {
+    document.getElementById("main").style.display = "none";
+    setTimeout(function () {
+      document.getElementById("main").style.display = "block";
+    }, 2500);
+  } else {
+    if (e.target.classList.contains("touchRandom")) {
+      randomize();
+      document.getElementById("footerText").style.display = "none";
+    }
   }
 });
 
@@ -155,12 +162,12 @@ function changeFooterTextColour() {
 // function to determine text for help menu button
 function helpButtonText() {
     if (isTouchDevice()) {
-        document.getElementById("helpText1").innerHTML = "Touch background to<br>randomise gradient.";
-        document.getElementById("helpText2").innerText = "Shake device to hide menu.";
+        document.getElementById("helpText1").innerHTML = "Touch background to<br>randomise gradient";
+        document.getElementById("helpText2").innerText = "Use 2 fingers to hide menu";
 
     } else {
-        document.getElementById("helpText1").innerText = "Press spacebar to randomise gradient.";
-        document.getElementById("helpText2").innerText = "Press shift to hide menu.";
+        document.getElementById("helpText1").innerText = "Press spacebar to randomise gradient";
+        document.getElementById("helpText2").innerText = "Press shift to hide menu";
     }
 }
 
