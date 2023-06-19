@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gradient Generator</title>
+    <meta name="description" content="Simple Gradient Generator">
     <link type="text/css" rel="stylesheet" href="style.css">
     <link rel="apple-touch-icon" sizes="180x180" href="../images/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="../images/favicon-32x32.png">
@@ -16,8 +17,13 @@
     <main id="main">
         <div class="glass card flex">
             <div class="solid card flex">
-                <h1 class="title">Gradient Generator</h1>                    
-                <div class="inputContainer flex">
+                <h1 class="title">Gradient Generator</h1>
+                <div id="help" class="flex">
+                    <p id="helpText1" class="helpText"></p>
+                    <p id="helpText2" class="helpText"></p>
+                    <button id="helpButton" class="button">Understood</button>
+                </div>                    
+                <div id="inputs" class="inputContainer flex">
                     <div class="input">
                         <label for="color1">Color 1</label>
                         <input type="color" name="color1" id="color1" value="#00c9ff">
