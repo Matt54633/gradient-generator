@@ -18,59 +18,55 @@ angle.addEventListener("change", checkAngle);
 stop1.addEventListener("change", checkStop);
 stop2.addEventListener("change", checkStop);
 
-// on space bar press, randomize the background, only if not touch device
+// on space bar press, randomise the background, only if not touch device
 window.addEventListener("keydown", function (e) {
   if (e.keyCode === 32 && !isTouchDevice()) {
-    randomize();
-    document.getElementById("footerText").style.display = "none";
+    randomise();
   }
-});
-
-
-// while touch is held, randomize the background
-window.addEventListener("touchstart", function (e) {
-    touchstart = e.timeStamp;
-});
-
-// on touch end, if touch is held for more than 1 second, hide the main element, then show it again on release
-window.addEventListener("touchend", function (e) {
-    touchend = e.timeStamp;
-    touchtime = touchend - touchstart;
-    if (touchtime > 350) {
-        document.getElementById("main").style.display = "none";
-        setTimeout(function () {
-            document.getElementById("main").style.display = "flex";
-        }, 2500);
-    } else {
-        if (e.target.classList.contains("touchRandom")) {
-            randomize();
-            document.getElementById("footerText").style.display = "none";
-          }
-    }
 });
 
 // on shift, hide the main element, then show it again on release
 window.addEventListener("keydown", function (e) {
-    if (e.keyCode === 16 && !isTouchDevice()) {
-        document.getElementById("main").style.display = "none";
-    }
+  if (e.keyCode === 16 && !isTouchDevice()) {
+      document.getElementById("main").style.display = "none";
+  }
 });
 
 window.addEventListener("keyup", function (e) {
-    if (e.keyCode === 16 && !isTouchDevice()) {
-        document.getElementById("main").style.display = "flex";
+  if (e.keyCode === 16 && !isTouchDevice()) {
+      document.getElementById("main").style.display = "flex";
+  }
+});
+
+// while touch is held, hide the menu
+window.addEventListener("touchstart", function (e) {
+    if (e.target.classList.contains("touchRandom")) {
+      document.getElementById("main").style.display = "none";
+      document.getElementById("randomise").style.display = "none";
     }
 });
 
-// randomize the background
-function randomize() {
+// on touch end, show the menu again
+window.addEventListener("touchend", function (e) {
+  document.getElementById("main").style.display = "flex";
+  document.getElementById("randomise").style.display = "flex";
+});
+
+
+let randomiseButton = document.getElementById("randomise");
+
+randomiseButton.addEventListener("touchstart", function (e) {
+  randomise();
+});
+
+// randomise the background
+function randomise() {
   color1.value = getRandomColor();
   color2.value = getRandomColor();
   angle.value = getRandomAngle();
   stop1.value = 0;
   stop2.value = 100;
   updateBackground();
-  changeFooterTextColour();
 }
 
 // get random color
@@ -106,7 +102,7 @@ function checkStop() {
 
 // check if device is mobile on load and resize
 window.addEventListener("load", isTouchDevice);
-window.addEventListener("load", randomize);
+window.addEventListener("load", randomise);
 window.addEventListener("resize", isTouchDevice);
 
 // check if device is touch enabled
@@ -114,12 +110,11 @@ function isTouchDevice() {
   return "ontouchstart" in document.documentElement;
 }
 
-// if device is touch enabled, show the tap to randomize message
+// if device is touch enabled, show the tap to randomise message
 if (isTouchDevice()) {
-  document.getElementById("footerText").innerHTML = "Tap to randomise";
+  document.getElementById("randomise").style.display = "flex";
 } else {
-  document.getElementById("footerText").innerHTML =
-    "Press spacebar to randomise";
+  document.getElementById("randomise").style.display = "none";
 }
 
 // on button with id of css, copy the gradient css to clipboard
@@ -134,32 +129,11 @@ document.getElementById("css").addEventListener("click", function () {
   }, 2500);
 });
 
-// change footer text colour between black and white depending on how dark the background is
-function changeFooterTextColour() {
-  let background = document.body.style.background;
-  let rgb = background.match(/\d+/g);
-
-  let r = rgb[0];
-  let g = rgb[1];
-  let b = rgb[2];
-
-  let brightness = Math.round(
-    (parseInt(r) * 299 + parseInt(g) * 587 + parseInt(b) * 114) / 1000
-  );
-
-  if (brightness > 200) {
-    document.getElementById("footerText").style.color = "#000";
-  } else {
-    document.getElementById("footerText").style.color = "#fff";
-  }
-}
-
 // function to determine text for help menu button
 function helpButtonText() {
     if (isTouchDevice()) {
-        document.getElementById("helpText1").innerHTML = "Touch background to<br>randomise gradient";
-        document.getElementById("helpText2").innerText = "Long press to hide menu";
-
+        document.getElementById("helpText1").innerHTML = `Tap <img id="randomiseImg" src="randomise.svg" alt="Randomise"> to randomise gradient`
+        document.getElementById("helpText2").innerText = "Tap and hold to hide menu";
     } else {
         document.getElementById("helpText1").innerText = "Press spacebar to randomise gradient";
         document.getElementById("helpText2").innerText = "Press shift to hide menu";

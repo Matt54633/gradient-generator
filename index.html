@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,16 +14,17 @@
     <link rel="mask-icon" href="../images/safari-pinned-tab.svg" color="#3c9de2">
     <meta name="msapplication-TileColor" content="#262626">
 </head>
+
 <body class="flex touchRandom">
     <main id="main" class="flex">
         <div class="glass card flex">
             <div class="solid card flex">
                 <h1 class="title">Gradient Generator</h1>
                 <div id="help" class="flex">
-                    <p id="helpText1" class="helpText"></p>
-                    <p id="helpText2" class="helpText"></p>
+                    <p id="helpText1" class="helpText flex"></p>
+                    <p id="helpText2" class="helpText flex"></p>
                     <button id="helpButton" class="button">Understood</button>
-                </div>                    
+                </div>
                 <div id="inputs" class="inputContainer flex">
                     <div class="input">
                         <label for="color1">Color 1</label>
@@ -32,7 +34,7 @@
                         <label for="color2">Color 2</label>
                         <input type="color" name="color2" id="color2" value="#92fe9d">
                     </div>
-                  
+
                     <div class="input">
                         <label for="stop1">Start %</label>
                         <input type="number" name="stop1" id="stop1" value="0" min="0" max="100">
@@ -40,22 +42,25 @@
                     <div class="input">
                         <label for="stop2">Stop %</label>
                         <input type="number" name="stop2" id="stop2" value="100" min="0" max="100">
-                    </div>  
+                    </div>
                     <div class="input">
                         <label for="angle">Angle</label>
                         <input type="number" name="angle" id="angle" value="90" min="0" max="360">
-                    </div> 
+                    </div>
                     <div class="input">
                         <label style="color: transparent;" for="angle">Code</label>
                         <button id="css" class="button">Copy CSS</button>
+                    </div>
                 </div>
             </div>
-        </div> 
-    </div>
+        </div>
     </main>
-    <footer>
-        <p id="footerText" class="footerText"></p>
-    </footer>
-<script src="app.js"></script>
+    <div id="randomise" class="glass card round flex">
+        <div class="solid card round halfPadding flex">
+            <img id="randomiseImg" src="randomise.svg" alt="Randomise">
+        </div>
+    </div>
+    <script src="app.js"></script>
 </body>
+
 </html>

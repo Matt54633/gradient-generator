@@ -25,13 +25,13 @@ body {
   width: 100vw;
   height: 100svh;
   flex-direction: column;
+  gap: 60px;
   font-family: "Poppins", sans-serif;
   -webkit-tap-highlight-color: transparent;
 }
 
 main {
   flex-direction: column;
-  gap: 20px;
 }
 
 .flex {
@@ -59,6 +59,10 @@ main {
   border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
+.round {
+  border-radius: 50%;
+}
+
 .title {
   font-weight: 700;
   color: var(--dark-grey);
@@ -79,6 +83,7 @@ main {
   border: 1.5px solid rgba(220, 220, 220, 0.75);
   border-radius: 5px;
   padding: 10px;
+  gap: 5px;
   width: 100%;
 }
 
@@ -133,17 +138,20 @@ input[type="color"]:nth-child(2) {
   border: none;
 }
 
-footer {
-  position: absolute;
-  bottom: 30px;
+.halfPadding {
+  padding: 7px;
 }
 
-.footerText {
-  font-size: 16px;
-  font-weight: 600;
-  color: var(--dark-grey);
-  animation: floatUpDown 2s ease-in-out infinite;
+#randomise {
+  touch-action: manipulation;
 }
+
+#randomiseImg {
+  width: 28px;
+  height: 28px;
+  padding: 3px;
+}
+
 .button {
   font-size: 16px;
   padding: 5px 10px;
